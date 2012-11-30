@@ -58,10 +58,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Trie.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Trie.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Trie.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="8" selection-start="77" selection-end="77" vertical-scroll-proportion="0.12857144">
+            <state line="12" column="19" selection-start="167" selection-end="167" vertical-scroll-proportion="-8.307693">
               <folding />
             </state>
           </provider>
@@ -76,10 +76,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VirtualRouter.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="VirtualRouter.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/VirtualRouter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="25" selection-start="816" selection-end="816" vertical-scroll-proportion="0.0">
+            <state line="21" column="25" selection-start="816" selection-end="816" vertical-scroll-proportion="0.5206612">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -209,6 +209,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="options.lastSelected" value="preferences.externalResources" />
+    <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -408,15 +409,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/VirtualRouter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="25" selection-start="816" selection-end="816" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TrieNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="23" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0">
@@ -426,8 +418,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Trie.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="8" selection-start="77" selection-end="77" vertical-scroll-proportion="0.12857144">
+        <state line="12" column="19" selection-start="167" selection-end="167" vertical-scroll-proportion="-8.307693">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VirtualRouter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="25" selection-start="816" selection-end="816" vertical-scroll-proportion="0.5206612">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

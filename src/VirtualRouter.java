@@ -47,7 +47,8 @@ public class VirtualRouter {
     }
 
     public static void main(String[] args) {
-        VirtualRouter vr = new VirtualRouter(args[0], 2);
+		int stride = FileHelper.getStrideLength();
+        VirtualRouter vr = new VirtualRouter(args[0], stride);
 //        String ip = "127001";
 //        String binary = new BigInteger(ip.getBytes()).toString(2);
 //        System.out.print(binary);

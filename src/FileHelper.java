@@ -14,10 +14,14 @@ public class FileHelper {
     public static int getStrideLength() {
         int stride = 1;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Enter stride length (1 - 4): ");
+        System.out.print("Enter stride length (1 - 4): ");
         try {
             String line = reader.readLine();
             stride = Integer.parseInt(line);
+			if (stride > 4 || stride < 1){ 
+				stride = 1;
+				
+			}
         } catch (IOException e) {
             System.out.println("Couldn't parse value into an integer, setting stride length to default (1)" );
         }

@@ -4,8 +4,33 @@ import java.math.BigInteger;
 
 public class VirtualRouter {
     Trie trie;
-    public VirtualRouter(String file, int strides) {
-        BufferedReader reader = FileHelper.openFile(file);
+    public VirtualRouter(String buildFile, String testFile, int strides) {
+        createTrieFromFile(buildFile, strides);
+        writeRoutingTableToFile(testFile);
+
+    }
+
+    private void writeRoutingTableToFile(String testFile) {
+        BufferedReader reader = FileHelper.openFile(testFile);
+        String line = null;
+
+        try {
+            while((line = reader.readLine()) != null) {
+                String ipAddress = BinaryHelper.convertToBinary(line);
+
+                String router = trie.findNextHopRouter(ipAddress);
+                FileHelper.writeToFile(router, line, "routing.txt");
+            }
+        } catch (IOException e) {
+            System.out.println("Couldn't read line from test file");
+            e.printStackTrace();
+        }
+
+    }
+
+
+    private void createTrieFromFile(String buildFile, int strides) {
+        BufferedReader reader = FileHelper.openFile(buildFile);
         String line = null;
         trie = new Trie(strides);
         try {
@@ -13,31 +38,20 @@ public class VirtualRouter {
                 String[] splitLine = line.split(" ");
                 String ipAddress = splitLine[0];
                 String nextHop = splitLine[1];
-                String binaryIp = convertIPtoBinary(ipAddress);
-                System.out.println("Binary IP Address: " + binaryIp);
+                String binaryIp = BinaryHelper.convertToBinary(ipAddress);
                 trie.insert(binaryIp, nextHop);
             }
+            reader.close();
+
         } catch (IOException e) {
-            System.out.println("Couldn't read line :(");
+            System.out.println("Couldn't read line from builder file");
             e.printStackTrace();
         }
-
     }
 
-    private String convertIPtoBinary(String ipAddress) {
-        String importantBitsString = ipAddress.split("/")[1];
-        int importantBitsInt = Integer.parseInt(importantBitsString);
-        ipAddress = stripPeriodsFromIP(ipAddress);
-        String fullAddress = new BigInteger(ipAddress.getBytes()).toString(2);
-        return fullAddress.substring(0,importantBitsInt);
-    }
-
-    private String stripPeriodsFromIP(String ipAddress) {
-        return ipAddress.replace(".","");
-    }
 
     public static void main(String[] args) {
 		int stride = FileHelper.getStrideLength();
-        VirtualRouter vr = new VirtualRouter(args[0], stride);
+        VirtualRouter vr = new VirtualRouter(args[0], args[1], stride);
     }
 }

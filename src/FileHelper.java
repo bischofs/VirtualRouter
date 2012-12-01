@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class FileHelper {
@@ -33,10 +30,34 @@ public class FileHelper {
             FileReader input = new FileReader(file);
             reader = new BufferedReader(input);
         } catch (IOException e) {
-            System.out.println("Caught IO Exception, whoopsies");
+            System.out.println("Caught IO Exception while opening the read file, whoopsies");
             e.printStackTrace();
             return null;
         }
         return reader;
+    }
+
+    public static BufferedWriter openWriteFile(String file) {
+        BufferedWriter writer = null;
+        try {
+            FileWriter output = new FileWriter(file);
+            writer = new BufferedWriter(output);
+        } catch (IOException e) {
+            System.out.println("Caught IO Exception while opening write file, whoopsies");
+            e.printStackTrace();
+            return null;
+        }
+        return writer;
+    }
+
+    public static void writeToFile(String router, String ipAddress, String toFile) {
+        BufferedWriter writer = openWriteFile(toFile);
+        try {
+            writer.write(ipAddress + " " + router + "\n");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Couldn't write to file");
+            e.printStackTrace();
+        }
     }
 }

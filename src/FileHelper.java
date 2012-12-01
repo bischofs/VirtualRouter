@@ -20,7 +20,6 @@ public class FileHelper {
             stride = Integer.parseInt(line);
 			if (stride > 4 || stride < 1){ 
 				stride = 1;
-				
 			}
         } catch (IOException e) {
             System.out.println("Couldn't parse value into an integer, setting stride length to default (1)" );

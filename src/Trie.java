@@ -25,6 +25,10 @@ public class Trie
         } else {
             bit = binaryIp;
         }
+        if(binaryIp.equals("")) {
+            setLongestPrefixMatch();
+            return longestPrefixMatch;
+        }
 
         if(!rootNode.hasChildForKey(bit)) {
             setLongestPrefixMatch();
@@ -59,6 +63,11 @@ public class Trie
         } else {
             bit = binaryIp;
             binarySub = binaryIp;
+        }
+
+        if(binaryIp.equals("")) {
+            rootNode.setNextHop(nextHop);
+            return;
         }
 
         if(!rootNode.hasChildForKey(bit)) {

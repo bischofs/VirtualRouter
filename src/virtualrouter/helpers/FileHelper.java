@@ -1,12 +1,8 @@
+package virtualrouter.helpers;
 import java.io.*;
-import java.util.ArrayList;
+
 
 public class FileHelper {
-    public static ArrayList<String> readFile(String file) {
-        ArrayList<String> ipAddresses = new ArrayList<String>();
-
-    return ipAddresses;
-    }
 
     public static int getStrideLength() {
         int stride = 1;
@@ -37,27 +33,19 @@ public class FileHelper {
         return reader;
     }
 
-    public static BufferedWriter openWriteFile(String file) {
-        BufferedWriter writer = null;
+    public static PrintWriter openWriteFile(String file) {
+        File writeFile = new File(file);
         try {
-            FileWriter output = new FileWriter(file);
-            writer = new BufferedWriter(output);
+            return new PrintWriter(new FileWriter(writeFile), true);
         } catch (IOException e) {
             System.out.println("Caught IO Exception while opening write file, whoopsies");
             e.printStackTrace();
             return null;
         }
-        return writer;
     }
 
-    public static void writeToFile(String router, String ipAddress, String toFile) {
-        BufferedWriter writer = openWriteFile(toFile);
-        try {
-            writer.write(ipAddress + " " + router + "\n");
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("Couldn't write to file");
-            e.printStackTrace();
-        }
+    public static void writeToFile(String data, String toFile) {
+        PrintWriter writer = openWriteFile(toFile);
+        writer.write(data);
     }
 }

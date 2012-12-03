@@ -28,6 +28,15 @@ public class TrieTest extends TestCase {
 
     }
 
+
+    public void testInsertSetsHeadNodeIfNoIPLength() throws Throwable {
+        TrieNode rootNode = target.getRootNode();
+        target.insert("", "1");
+
+        assertThat(rootNode.getNextHop(), equalTo("1"));
+
+    }
+
     public void testInsertGetsTheCorrectNumberOfChildren() throws Exception {
         TrieNode rootNode = target.getRootNode();
         target.insert("10", "2");

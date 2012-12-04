@@ -11,7 +11,8 @@ public class FileHelper {
         try {
             String line = reader.readLine();
             stride = Integer.parseInt(line);
-			if (stride > 4 || stride < 1){ 
+			if (stride > 4 || stride < 1){
+                System.out.println("Stride of ("+ stride + ") is not between 1 and 4, setting stride to 1.");
 				stride = 1;
 			}
         } catch (IOException e) {

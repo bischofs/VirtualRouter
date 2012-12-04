@@ -7,6 +7,11 @@ import java.io.PrintWriter;
 
 public class VirtualRouter {
     Trie trie;
+    float averageLookupTime = 0;
+    long totalLookupTime = 0;
+
+    public VirtualRouter() {
+    }
 
     public VirtualRouter(String buildFile, String testFile, int strides) {
         createTrieFromFile(buildFile, strides);
@@ -18,16 +23,27 @@ public class VirtualRouter {
         BufferedReader reader = FileHelper.openFile(testFile);
         String line = null;
         PrintWriter writer;
+        float count = 0;
 
         try {
             writer = FileHelper.openWriteFile("routing.txt");
             while ((line = reader.readLine()) != null) {
+                count++;
                 String ipAddress = BinaryHelper.convertToBinary(line);
-                String toWrite = line + " " + trie.findNextHopRouter(ipAddress) + "\n";
+                long startTime = System.nanoTime();
+                String nextHop = trie.findNextHopRouter(ipAddress);
+                long endTime = System.nanoTime();
+                totalLookupTime = totalLookupTime + (endTime - startTime);
+                averageLookupTime = totalLookupTime / count;
 
-                writer.write(toWrite);
+                String toWrite = line + "\t\t\t" + nextHop;
+
+                System.out.println("Writing " + toWrite);
+
+                writer.write(toWrite + "\n");
             }
             writer.close();
+            System.out.println("The Average Lookup Time was: " + averageLookupTime);
         } catch (IOException e) {
             System.out.println("Couldn't read line from test file");
             e.printStackTrace();

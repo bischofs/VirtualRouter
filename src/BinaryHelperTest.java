@@ -19,6 +19,7 @@ public class BinaryHelperTest extends TestCase {
         assertThat(BinaryHelper.convertToBinaryWithImportantBits("2.1/8"), equalTo("00000010"));
         assertThat(BinaryHelper.convertToBinaryWithImportantBits("37.4/4"), equalTo("0010"));
         assertThat(BinaryHelper.convertToBinaryWithImportantBits("0.0/0"), equalTo(""));
+        assertThat(BinaryHelper.convertToBinaryWithImportantBits("65.72.0.0/16"), equalTo("0100000101001000"));
 
     }
 

@@ -4,6 +4,7 @@ import virtualrouter.helpers.FileHelper;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Formatter;
 
 public class VirtualRouter {
     Trie trie;
@@ -36,11 +37,11 @@ public class VirtualRouter {
                 totalLookupTime = totalLookupTime + (endTime - startTime);
                 averageLookupTime = totalLookupTime / count;
 
-                String toWrite = line + "\t\t\t" + nextHop;
+                String formattedString = String.format("%s   %-20s", line, nextHop);
 
-                System.out.println("Writing " + toWrite);
+                System.out.println("Writing " + formattedString);
 
-                writer.write(toWrite + "\n");
+                writer.write(formattedString + "\n");
             }
             writer.close();
             System.out.println("The Average Lookup Time was: " + averageLookupTime);

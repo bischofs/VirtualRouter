@@ -6,7 +6,6 @@ import static org.junit.Assert.assertThat;
 public class TrieTest extends TestCase {
     Trie target;
     public void setUp() throws Exception {
-        target = new Trie(1);
 
     }
 
@@ -15,11 +14,12 @@ public class TrieTest extends TestCase {
     }
 
     public void testInsertCanGetNextHopOfLeaf() throws Exception {
-        target.setStrides(1);
+        target = new Trie(1);
+
         target.insert("100", "95.123.12.1");
         TrieNode rootNode = target.getRootNode();
 
-        assertThat(rootNode.getChildren().size(), equalTo(1));
+        assertThat(rootNode.getChildren().size(), equalTo(2));
         assertThat(rootNode.getChild("1").getChild("0").getChild("0").getNextHop(), equalTo("95.123.12.1"));
 
         target.insert("011", "92.432.4");
@@ -30,6 +30,7 @@ public class TrieTest extends TestCase {
 
 
     public void testInsertSetsHeadNodeIfNoIPLength() throws Throwable {
+        target = new Trie(1);
         TrieNode rootNode = target.getRootNode();
         target.insert("", "1");
 
@@ -38,6 +39,7 @@ public class TrieTest extends TestCase {
     }
 
     public void testInsertGetsTheCorrectNumberOfChildren() throws Exception {
+        target = new Trie(1);
         TrieNode rootNode = target.getRootNode();
         target.insert("10", "2");
 
@@ -47,19 +49,19 @@ public class TrieTest extends TestCase {
     }
 
     public void testInsertCanUseMultipleStrideLength() throws Exception {
-        target.setStrides(2);
+        target = new Trie(2);
 
         target.insert("1011", "7");
         target.insert("1111", "15");
         target.insert("0011", "3");
 
-        assertThat(target.getRootNode().getChildren().size(), equalTo(3));
+        assertThat(target.getRootNode().getChildren().size(), equalTo(4));
         assertThat(target.getRootNode().getChild("10").getChild("11").getNextHop(), equalTo("7"));
 
     }
 
     public void testInsertCanUseMultipleStrideLengthWithNotNiceIPLengths() throws Exception {
-        target.setStrides(2);
+        target = new Trie(2);
 
         target.insert("10110", "7");
         target.insert("1111101", "15");
@@ -71,7 +73,7 @@ public class TrieTest extends TestCase {
     }
 
     public void testfindNextHopRouter() throws Exception {
-        target.setStrides(1);
+        target = new Trie(1);
 
         target.insert("101", "2");
         target.insert("111", "3");
@@ -82,7 +84,7 @@ public class TrieTest extends TestCase {
     }
 
     public void testFindNextHopRouterReturnsClosetMatch() throws Exception {
-        target.setStrides(1);
+        target = new Trie(1);
 
         target.insert("10000", "32");
         target.insert("1", "1");
@@ -91,7 +93,7 @@ public class TrieTest extends TestCase {
     }
 
     public void testFindNextHopRouterCanUseMultipleStrides() throws Exception {
-        target.setStrides(2);
+        target = new Trie(2);
 
         target.insert("1010", "42");
         target.insert("1011", "48");
@@ -101,7 +103,7 @@ public class TrieTest extends TestCase {
     }
 
     public void testFindNextHopRouterReturnsClosestMatchWithMultipleStrides() throws Exception {
-        target.setStrides(3);
+        target = new Trie(3);
 
         target.insert("101010", "50");
         target.insert("101", "51");
